@@ -50,16 +50,32 @@ interface CharacterVars {
 
 export const SingleCharacter: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const { loading, data } = useQuery<Response, CharacterVars>(FETCH_SINGLE_CHAR, { variables: { id: parseInt(match.params.id) } })
-  if (!data || !data.character) {
-    return null;
+  if (loading || !data || !data.character) {
+    return <div className="loader">Loading...</div>;
   }
   const character = data.character;
 
   return (
     <div>
-      <div>{match.params.id}</div>
-      <div>{character.name}</div>
-      <div>{character.status}</div>
+      <div className="char-info content-container">
+        <div>{match.params.id}</div>
+        <div>{character.name}</div>
+        <div>{character.status}</div>
+      </div>
+      <div className="char-seen content-container">
+        <h2 className="single-char-slider-title">Episodes</h2>
+        <p className="single-char-slider-subtext">{character.name} has appeared on these episodes</p>
+      </div>
+      <div className="char-seen-cards">
+        episode cards go here
+        </div>
+      <div className="char-seen content-container">
+        <h2 className="single-char-slider-title">Planets</h2>
+        <p className="single-char-slider-subtext">{character.name} has been on these planets</p>
+      </div>
+      <div className="char-seen-cards">
+        planet cards go here
+        </div>
     </div>
   )
 }

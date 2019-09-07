@@ -39,15 +39,8 @@ export const Main: React.FC = () => {
     return <div className="loader">Loading...</div>;
   }
 
-  // characters.forEach((el) => {
-  //   if (el.name.length > 12) {
-  //     console.log(el.name)
-  //   }
-  // })
-
   // This applies scroll on hover only to long overflowing titles
   const titles = document.getElementsByClassName('card-title') as HTMLCollectionOf<Element>
-  console.log(titles)
   setTimeout(() => {
     let title
     for (let i = 0; i < titles.length; i++) {

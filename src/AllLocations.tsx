@@ -42,7 +42,7 @@ export const Locations: React.FC = () => {
   }
 
   return (
-    <div className="content-container char-cards-container">
+    <div className="content-container">
       {locations.map((item: any, index: any) => (
         <div className="location-card">
           <h1 className="card-title">{item.name}</h1>

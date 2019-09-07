@@ -18,7 +18,7 @@ export const Footer = () => {
         <Link to={'/episodes'} style={{ textDecoration: 'none' }}>
           <Nav className="navlink footer-navlink">Episodes</Nav>
         </Link>
-        <Link to={'/planets'} style={{ textDecoration: 'none' }}>
+        <Link to={'/locations'} style={{ textDecoration: 'none' }}>
           <Nav className="navlink footer-navlink">Planets</Nav>
         </Link>
       </Nav>
@@ -29,7 +29,8 @@ export const Footer = () => {
           </span>
         </p>
       </div>
-      <div className="rick-face" />
+      <div className="rick-face">
+      </div>
     </footer>
   )
 }

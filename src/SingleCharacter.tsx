@@ -1,7 +1,8 @@
 import React from 'react'
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, Link } from "react-router-dom";
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
+import { Card } from 'react-bootstrap';
 
 const FETCH_SINGLE_CHAR = gql`
 query fetchCharacters($id: ID) {
@@ -58,7 +59,7 @@ export const SingleCharacter: React.FC<RouteComponentProps<MatchParams>> = ({ ma
   return (
     <div>
       <div className="char-info content-container">
-        <div>{match.params.id}</div>
+        <img src="{character.image}" alt="Character avatar" className="char-info-avatar" />
         <div>{character.name}</div>
         <div>{character.status}</div>
       </div>
@@ -68,14 +69,14 @@ export const SingleCharacter: React.FC<RouteComponentProps<MatchParams>> = ({ ma
       </div>
       <div className="char-seen-cards">
         episode cards go here
-        </div>
+      </div>
       <div className="char-seen content-container">
         <h2 className="single-char-slider-title">Planets</h2>
         <p className="single-char-slider-subtext">{character.name} has been on these planets</p>
       </div>
       <div className="char-seen-cards">
         planet cards go here
-        </div>
+      </div>
     </div>
   )
 }

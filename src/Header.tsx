@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from './assets/img/main-logo.svg'
-import { Nav, Form, FormControl } from 'react-bootstrap'
+import { Nav, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export const Header = () => {
@@ -16,7 +16,7 @@ export const Header = () => {
         <Link to={'/episodes'} style={{ textDecoration: 'none' }}>
           <Nav className="navlink">Episodes</Nav>
         </Link>
-        <Link to={'/planets'} style={{ textDecoration: 'none' }}>
+        <Link to={'/locations'} style={{ textDecoration: 'none' }}>
           <Nav className="navlink">Planets</Nav>
         </Link>
       </Nav>

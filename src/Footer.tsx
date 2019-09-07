@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from './assets/img/main-logo.svg'
-import github from './assets/img/icons/github-logo.svg'
 import { Link } from 'react-router-dom'
 import { Nav } from 'react-bootstrap'
 
@@ -24,7 +23,11 @@ export const Footer = () => {
         </Link>
       </Nav>
       <div className="footer-info">
-        <p>Made by Andis Kačerovskis | See this site on <span className="github"><a href="https://github.com/mnemosx/rick-and-morty-api-with-graphQL">Github</a></span> </p>
+        <p>Made by Andis Kačerovskis | See this site on
+          <span className="github">
+            <a href="https://github.com/mnemosx/rick-and-morty-api-with-graphQL" target="_blank" rel="noopener noreferrer">Github</a>
+          </span>
+        </p>
       </div>
       <div className="rick-face" />
     </footer>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Container as div, Row } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
 import { Link } from 'react-router-dom';
@@ -27,7 +27,6 @@ interface Character {
   id: number,
   name: string,
   image: string,
-  species: string
 }
 interface CharactersVars {
   page: number
@@ -40,11 +39,11 @@ export const Main: React.FC = () => {
     return <div className="loader">Loading...</div>;
   }
 
-  characters.forEach((el) => {
-    if (el.name.length > 12) {
-      console.log(el.name)
-    }
-  })
+  // characters.forEach((el) => {
+  //   if (el.name.length > 12) {
+  //     console.log(el.name)
+  //   }
+  // })
 
   // This applies scroll on hover only to long overflowing titles
   const titles = document.getElementsByClassName('card-title') as HTMLCollectionOf<Element>
@@ -62,9 +61,8 @@ export const Main: React.FC = () => {
     }
   }, 1000);
 
-
   return (
-    <div className="content-container char-cards-container">
+    <div className="char-cards-container">
       {characters.map((item: any, index: any) => (
         <Link to={'/characters/' + item.id} style={{ textDecoration: 'none' }}>
           <Card key={index} className="char-card z-depth-1" >

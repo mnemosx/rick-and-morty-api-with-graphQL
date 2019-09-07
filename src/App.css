@@ -166,15 +166,13 @@ header, footer {
   padding-left: 5px;
 }
 
-/* input[type=submit]:focus {
-  background-color: green;
-} */
-
 .char-cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 30px auto;
+  width: 70vw;
+  max-width: 1160px;
 }
 
 .char-card {
@@ -219,7 +217,7 @@ header, footer {
   margin-left: -300px;
 }
 
-.char-card .card-title {
+.card-title {
   color: var(--darker-text);
   font-family: 'kinda-rickandmorty', 'rickandmorty', 'Roboto', sans-serif;
   margin-bottom: 0;
@@ -277,12 +275,13 @@ footer>div {
 .footer-info>p {
   font-size: .8rem;
   color: var(--grey);
-  margin: 0;
+  margin-bottom: 0;
 }
 
 .github a {
   text-decoration: none;
-  color: var(--darker-text)
+  color: var(--darker-text);
+  margin-left: 5px;
 }
 
 .github::after {
@@ -304,4 +303,114 @@ footer>div {
 .char-seen-cards {
   background-color: var(--light-bg);
   width: 100vw;
+}
+
+.char-info-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.location-card {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.location-card .card-title {
+  margin-bottom: 10px;
+}
+
+.location-info {
+  display: flex;
+}
+
+.location-info>div {
+  display: inline-block;
+  background-color: var(--light-bg);
+  padding: 20px;
+}
+
+.location-info>div:first-of-type {
+  width: 35%;
+  border-radius: 4px 0 0 4px;
+}
+
+.location-info>div:nth-of-type(2) {
+  width: 55%;
+}
+
+.location-info>div:last-of-type {
+  width: 10%;
+  text-align: right;
+  border-radius: 0 4px 4px 0;
+}
+
+.location-info h4 {
+  font-size: 1.3rem;
+  color: var(--grey)
+}
+
+.location-info p {
+  font-size: 1.4rem;
+  color: var(--blue);
+  margin-bottom: 0;
+}
+
+@media (max-width: 1660px) {
+  .char-cards-container {
+    width: 85%;
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 1380px) {
+  .char-cards-container {
+    width: 90%;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 1155px) {
+  header {
+    flex-wrap: wrap;
+  }
+  .form-inline, .search-field {
+    width: 100%;
+    margin-top: 10px;
+    height: 50px;
+  }
+  header .navbar {
+    padding: 0;
+  }
+  header .navbar a:last-of-type {
+    margin-right: -20px;
+  }
+  .char-cards-container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 730px) {
+  header, footer {
+    justify-content: center;
+  }
+  footer {
+    flex-wrap: wrap;
+  }
+  .navbar {
+    width: 100%;
+    justify-content: center;
+  }
+  .form-inline, .search-field {
+    margin-top: 0;
+  }
+  footer .navbar {
+    margin-right: 0;
+    flex: 0 1 100%;
+    margin-top: 20px;
+  }
+  header .navbar a:last-of-type {
+    margin-right: 0;
+  }
 }

@@ -1,3 +1,10 @@
+/* ==========================================================================
+   Global
+   ========================================================================== */
+
+/* Fonts
+   ========================================================================== */
+
 @font-face {
   font-family: 'rickandmorty';
   font-weight: normal;
@@ -12,40 +19,44 @@
   unicode-range: U+28-39;
 }
 
-/* DARK COlORS:  */
+/* Colors
+   ========================================================================== */
 
 :root {
+  --blue: #5db5fe;
   --dark-bg: #202831;
-  --light-bg: #374149;
-  --text: #ffffff;
   --darker-text: #adbfce;
   --green: #7acd74;
-  --red: #ce575b;
-  --blue: #5db5fe;
   --grey: #5c6773;
+  --light-bg: #374149;
+  --red: #ce575b;
+  --text: #ffffff;
 }
+
+/* Loading spinner (or in this case - three dots)
+   ========================================================================== */
 
 .loader, .loader:before, .loader:after {
   border-radius: 50%;
-  width: 2.5em;
   height: 2.5em;
+  width: 2.5em;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  -webkit-animation: load7 1.8s infinite ease-in-out;
-  animation: load7 1.8s infinite ease-in-out;
+  -webkit-animation: load 1.8s infinite ease-in-out;
+  animation: load 1.8s infinite ease-in-out;
 }
 
 .loader {
+  animation-delay: -0.16s;
   color: #ffffff;
   font-size: 10px;
   margin: 80px auto;
   position: relative;
   text-indent: -9999em;
-  -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
-  transform: translateZ(0);
   -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .loader:before, .loader:after {
@@ -64,7 +75,7 @@
   left: 3.5em;
 }
 
-@-webkit-keyframes load7 {
+@-webkit-keyframes load {
   0%, 80%, 100% {
     box-shadow: 0 2.5em 0 -1.3em;
   }
@@ -73,7 +84,7 @@
   }
 }
 
-@keyframes load7 {
+@keyframes load {
   0%, 80%, 100% {
     box-shadow: 0 2.5em 0 -1.3em;
   }
@@ -81,13 +92,42 @@
     box-shadow: 0 2.5em 0 0;
   }
 }
+
+/* Global colors and layout
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--text)
+}
+
+.content-container {
+  margin: 0 auto;
+  max-width: 1160px;
+  padding-bottom: 30px;
+  width: 70vw;
+}
+
+header, footer {
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0;
+}
+
+/* Pickle Riiick in the bottom right corner
+   ========================================================================== */
 
 .rick-face {
-  position: fixed;
-  width: 150px;
-  height: 190px;
   bottom: 0;
   right: 0;
+  height: 190px;
+  position: fixed;
+  width: 150px;
 }
 
 .rick-face:hover::after {
@@ -96,9 +136,9 @@
   bottom: 30px;
   opacity: 1;
   -moz-transform: rotate(-720deg) scale(1.25);
-  -webkit-transform: rotate(-720deg) scale(1.25);
-  -o-transform: rotate(-720deg) scale(1.25);
   -ms-transform: rotate(-720deg) scale(1.25);
+  -o-transform: rotate(-720deg) scale(1.25);
+  -webkit-transform: rotate(-720deg) scale(1.25);
   transform: rotate(-720deg) scale(1.25);
 }
 
@@ -108,50 +148,34 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.5;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+  opacity: 0.5;
   position: absolute;
   transition: all 0.4s ease-in-out;
 }
 
-body {
-  background-color: var(--dark-bg);
-  color: var(--text)
-}
-
-.content-container {
-  width: 70vw;
-  max-width: 1160px;
-  margin: 0 auto;
-  padding-bottom: 30px;
-}
-
-header, footer {
-  padding: 20px 0;
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-}
+/* Header
+   ========================================================================== */
 
 .logo {
   width: 200px;
 }
 
 .navbar {
-  flex-grow: 1;
-  text-align: center;
   display: flex;
+  flex-grow: 1;
   justify-content: flex-end;
   padding-right: 30px;
+  text-align: center;
 }
 
 .navlink {
   color: var(--darker-text);
-  padding: 20px;
   font-size: 1.3rem;
+  padding: 20px;
 }
 
 .navlink:hover {
@@ -161,16 +185,16 @@ header, footer {
 
 .search-field {
   background-color: var(--grey);
-  border: none;
-  padding: 7px;
   border-radius: 4px;
-  color: var(--text)
+  border: none;
+  color: var(--text);
+  padding: 7px;
 }
 
 .search-field:focus {
   border: 0;
-  outline: 0;
   border-bottom: 2px solid var(--red);
+  outline: 0;
 }
 
 .search-field::placeholder {
@@ -178,24 +202,93 @@ header, footer {
   padding-left: 5px;
 }
 
+/* Footer
+   ========================================================================== */
+
+footer {
+  border-top: 1px solid var(--red);
+  flex-wrap: wrap;
+  height: 110px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+footer>div {
+  flex: 1 0 50%;
+}
+
+.footer-info {
+  flex: 0 1 100%;
+  text-align: center;
+  margin: 15px auto;
+}
+
+.footer-navbar {
+  margin-right: -20px;
+  padding: 0;
+}
+
+.footer-logo {
+  width: 100px;
+}
+
+.footer-navlink {
+  font-size: 1rem;
+  padding: 5px 20px;
+}
+
+.footer-info>p {
+  color: var(--grey);
+  font-size: .8rem;
+  margin-bottom: 0;
+}
+
+.github a {
+  color: var(--darker-text);
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.github::after {
+  content: '';
+  background-image: url(./assets/img/icons/github-logo.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 0 -4px 5px;
+}
+
+/* ==========================================================================
+   Landing page
+   ========================================================================== */
+
 .char-cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 30px auto;
-  width: 70vw;
   max-width: 1160px;
+  width: 70vw;
 }
 
 .char-card {
   background-color: var(--light-bg);
+  margin: 25px 20px;
   text-align: center;
   width: 250px;
-  margin: 25px 20px;
 }
 
 .char-card img {
+  background: url(./assets/img/placeholder.png) center/cover no-repeat;
   width: 90%;
+  height: 230px;
   margin: -20px auto 0 auto;
   border-radius: 3px;
   -webkit-box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
@@ -204,9 +297,9 @@ header, footer {
 }
 
 .hvr-grow {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
   -webkit-transition-property: transform;
@@ -232,14 +325,14 @@ header, footer {
 .card-title {
   color: var(--darker-text);
   font-family: 'kinda-rickandmorty', 'rickandmorty', 'Roboto', sans-serif;
-  margin-bottom: 0;
   font-size: 2.1rem;
+  margin-bottom: 0;
 }
 
 .card-title-scroller {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   -webkit-transition: 3s;
   -moz-transition: 3s;
   transition: 3s;
@@ -248,103 +341,153 @@ header, footer {
   transition-timing-function: cubic-bezier(0.04, 0.4, 0.58, 0.68);
 }
 
-footer {
+/* ==========================================================================
+   Single character page
+   ========================================================================== */
+
+.char-info-title {
+  font-family: 'kinda-rickandmorty', 'rickandmorty', 'Roboto', sans-serif;
+  margin-top: 30px;
+}
+
+.char-info-avatar {
+  border-radius: 5px;
+  width: 200px;
+  height: 200px;
+  margin: 20px auto !important;
+  -webkit-box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
+  -moz-box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
+  box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
+}
+
+.char-info {
+  display: flex;
+  align-items: center;
+}
+
+.char-info-flex-container {
+  display: flex;
   flex-wrap: wrap;
-  position: absolute;
-  bottom: 0;
-  height: 110px;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  border-top: 1px solid var(--red);
 }
 
-footer>div {
-  flex: 1 0 50%;
+.char-info-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 5px 0;
 }
 
-.footer-info {
-  flex: 0 1 100%;
-  text-align: center;
-  margin: 15px auto;
-}
-
-.footer-navbar {
-  padding: 0;
-  margin-right: -20px;
-}
-
-.footer-logo {
-  width: 100px;
-}
-
-.footer-navlink {
-  font-size: 1rem;
-  padding: 5px 20px;
-}
-
-.footer-info>p {
-  font-size: .8rem;
+.char-info-col-title {
   color: var(--grey);
-  margin-bottom: 0;
+  margin-right: 20px;
+  text-align: right;
+  min-width: 100px;
 }
 
-.github a {
-  text-decoration: none;
-  color: var(--darker-text);
-  margin-left: 5px;
-}
-
-.github::after {
-  content: '';
-  background-image: url(./assets/img/icons/github-logo.svg);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin: 0 0 -4px 5px;
+.char-info-col {
+  color: var(--blue);
+  font-size: 1.3rem;
 }
 
 .char-seen {
   position: relative;
 }
 
-.char-seen-cards {
-  background-color: var(--light-bg);
-  width: 100vw;
+.char-seen-cards-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin: -30px auto 30px auto;
+  padding: 30px 0;
+  overflow: auto;
+  max-width: 1160px;
+  width: 70vw;
 }
 
-.char-info-avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+.seen-episode-info {
+  flex-direction: column;
+  margin: 0 20px;
+  min-width: 200px;
 }
 
-.location-card {
-  width: 100%;
+.seen-episode-info>div {
+  width: 100% !important;
+}
+
+/* ==========================================================================
+   Single Episode
+   ========================================================================== */
+
+.single-episode-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-top: 30px;
 }
 
-.location-card .card-title {
+.ep-air-date {
+  color: var(--green);
+  margin-left: auto;
+  align-self: center;
+}
+
+.single-episode-card .episode-info {
+  flex: 0 0 100%;
+}
+
+.single-episode-card .card-title {
   margin-bottom: 10px;
 }
 
-.location-info {
-  display: flex;
+.single-subtitle {
+  margin: 30px auto;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--darker-text)
 }
 
-.location-info>div {
-  display: inline-block;
+/* ==========================================================================
+   All Locations & All Episodes
+   ========================================================================== */
+
+.location-card {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.location-card>.card-title {
+  margin-bottom: 10px;
+}
+
+.location-info, .episode-info {
   background-color: var(--light-bg);
+  border-radius: 4px;
+  display: flex;
+  -webkit-box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
+  -moz-box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
+  box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
+}
+
+.location-info>div, .episode-info>div {
+  display: inline-block;
   padding: 20px;
 }
 
 .location-info>div:first-of-type {
   width: 35%;
-  border-radius: 4px 0 0 4px;
+}
+
+.episode-info>div {
+  width: 100%;
+}
+
+.episode-info>div:first-of-type {
+  width: 70%;
+}
+
+.episode-info>div:last-of-type {
+  width: 30%;
 }
 
 .location-info>div:nth-of-type(2) {
@@ -352,33 +495,37 @@ footer>div {
 }
 
 .location-info>div:last-of-type {
-  width: 10%;
-  text-align: right;
   border-radius: 0 4px 4px 0;
+  text-align: right;
+  width: 10%;
 }
 
-.location-info h4 {
+.location-info h4, .episode-info h4 {
+  color: var(--grey);
   font-size: 1.3rem;
-  color: var(--grey)
 }
 
-.location-info p {
-  font-size: 1.4rem;
+.location-info p, .episode-info p {
   color: var(--blue);
+  font-size: 1.4rem;
   margin-bottom: 0;
 }
 
+/* ==========================================================================
+   Media queries
+   ========================================================================== */
+
 @media (max-width: 1660px) {
   .char-cards-container {
-    width: 85%;
     max-width: 85%;
+    width: 85%;
   }
 }
 
 @media (max-width: 1380px) {
   .char-cards-container {
-    width: 90%;
     max-width: 90%;
+    width: 90%;
   }
 }
 
@@ -387,9 +534,9 @@ footer>div {
     flex-wrap: wrap;
   }
   .form-inline, .search-field {
-    width: 100%;
-    margin-top: 10px;
     height: 50px;
+    margin-top: 10px;
+    width: 100%;
   }
   header .navbar {
     padding: 0;
@@ -398,8 +545,8 @@ footer>div {
     margin-right: -20px;
   }
   .char-cards-container {
-    width: 100%;
     max-width: 100%;
+    width: 100%;
   }
 }
 
@@ -411,21 +558,30 @@ footer>div {
     flex-wrap: wrap;
   }
   .navbar {
-    width: 100%;
     justify-content: center;
+    width: 100%;
   }
   .form-inline, .search-field {
     margin-top: 0;
   }
   footer .navbar {
-    margin-right: 0;
     flex: 0 1 100%;
     margin-top: 20px;
+    margin-right: 0;
   }
   header .navbar a:last-of-type {
     margin-right: 0;
   }
   .rick-face {
     display: none;
+  }
+  .char-info {
+    flex-wrap: wrap;
+  }
+  .char-info-title {
+    text-align: center;
+  }
+  .char-info-avatar, .char-info-flex-container {
+    margin: 0 auto;
   }
 }

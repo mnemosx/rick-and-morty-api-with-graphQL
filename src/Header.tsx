@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from './assets/img/main-logo.svg'
 import { Nav, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export const Header = () => {
   return (
@@ -10,15 +10,30 @@ export const Header = () => {
         <img src={logo} alt="Logo" className="logo" />
       </Link>
       <Nav className="navbar">
-        <Link to={'/'} style={{ textDecoration: 'none' }}>
+        <NavLink to={'/'}
+          style={{
+            textDecoration: 'none'
+          }}>
           <Nav className="navlink">Home</Nav>
-        </Link>
-        <Link to={'/episodes'} style={{ textDecoration: 'none' }}>
+        </NavLink>
+        <NavLink to={'/episodes'}
+          activeStyle={{
+            fontWeight: "bold",
+          }}
+          style={{
+            textDecoration: 'none'
+          }}>
           <Nav className="navlink">Episodes</Nav>
-        </Link>
-        <Link to={'/locations'} style={{ textDecoration: 'none' }}>
+        </NavLink>
+        <NavLink to={'/locations'}
+          activeStyle={{
+            fontWeight: "bold",
+          }}
+          style={{
+            textDecoration: 'none'
+          }}>
           <Nav className="navlink">Planets</Nav>
-        </Link>
+        </NavLink>
       </Nav>
       <Form inline>
         <input type="text" placeholder="Search" className="search-field" />

@@ -1,20 +1,17 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
-import { Link } from 'react-router-dom';
 
 const FETCH_LOCATIONS = gql`
   query fetchLocations($page: Int!) {
       locations(page: $page) {
-      results {
-        id
-        name
-        type
-        dimension
-        created
+        results {
+          id
+          name
+          type
+          dimension
+        }
       }
-    }
   }
 `;
 
@@ -28,7 +25,6 @@ interface Location {
   name: string,
   type: string,
   dimension: string,
-  created: string,
 }
 interface LocationVars {
   page: number
@@ -46,7 +42,7 @@ export const Locations: React.FC = () => {
       {locations.map((item: any, index: any) => (
         <div className="location-card">
           <h1 className="card-title">{item.name}</h1>
-          <div className="location-info">
+          <div className="location-info hvr-grow">
             <div>
               <h4>
                 Type

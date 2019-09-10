@@ -39,29 +39,21 @@ export const Main: React.FC = () => {
     return <div className="loader">Loading...</div>;
   }
 
-  // This applies scroll on hover only to long overflowing titles
-  const titles = document.getElementsByClassName('card-title') as HTMLCollectionOf<Element>
-  setTimeout(() => {
-    let title
-    for (let i = 0; i < titles.length; i++) {
-      title = titles[i].innerHTML
-      console.log(title)
-      // Obviously, since it's not monospace font, comparing to fixed number 
-      // of characters in string sucks. Should find another way.
-      if (title.length > 12) {
-        titles[i].className += ' card-title-scroller'
-      }
-    }
-  }, 1000);
-
   return (
     <div className="char-cards-container">
       {characters.map((item: any, index: any) => (
         <Link to={'/characters/' + item.id} style={{ textDecoration: 'none' }}>
           <Card key={index} className="char-card z-depth-1" >
-            <Card.Img variant="top" className="hvr-grow" src={item.image} />
+            <Card.Img
+              variant="top"
+              className="hvr-grow"
+              src={item.image}
+            />
             <Card.Body>
-              <Card.Title className="card-title">{item.name}</Card.Title>
+              <Card.Title
+                className={"card-title " + (item.name.length > 12 ? 'card-title-scroller' : '')}>
+                {item.name}
+              </Card.Title>
             </Card.Body>
           </Card>
         </Link>

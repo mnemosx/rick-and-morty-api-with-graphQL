@@ -9,6 +9,8 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { client } from './apollo'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
+import { Episodes } from './AllEpisodes';
+import { SingleEpisode } from './SingleEpisode';
 
 const App: React.FC = () => {
 
@@ -18,10 +20,12 @@ const App: React.FC = () => {
 
         <Header />
         <Switch>
-          <Route path="/" exact component={Characters} />
-          <Route path="/characters/:id" component={SingleCharacter} />
-          <Route path="/locations" component={Locations} />
         </Switch>
+        <Route path="/" exact component={Characters} />
+        <Route path="/characters/:id" component={SingleCharacter} />
+        <Route path="/locations" component={Locations} />
+        <Route path="/episodes" exact component={Episodes} />
+        <Route path="/episodes/:id" component={SingleEpisode} />
         <Footer />
 
       </ApolloProvider>

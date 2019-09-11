@@ -1,6 +1,8 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
+import { LocationData, LocationVars } from './interfaces'
+
 
 const FETCH_LOCATIONS = gql`
   query fetchLocations($page: Int!) {
@@ -15,22 +17,22 @@ const FETCH_LOCATIONS = gql`
   }
 `;
 
-interface LocationData {
-  locations: Locations
-}
-interface Locations {
-  results: Location[]
-}
-interface Location {
-  name: string,
-  type: string,
-  dimension: string,
-}
-interface LocationVars {
-  page: number
-}
+// interface LocationData {
+//   locations: Locations
+// }
+// interface Locations {
+//   results: Location[]
+// }
+// interface Location {
+//   name: string,
+//   type: string,
+//   dimension: string,
+// }
+// interface LocationVars {
+//   page: number
+// }
 
-export const Locations: React.FC = () => {
+export const AllLocations: React.FC = () => {
   const { loading, data } = useQuery<LocationData, LocationVars>(FETCH_LOCATIONS, { variables: { page: 1 } })
   const locations = loading || !data ? [] : data.locations.results;
   if (loading || !data) {

@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap'
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
 import { Link } from 'react-router-dom';
+import { Waypoint } from 'react-waypoint';
 
 const FETCH_CHARS = gql`
   query fetchCharacters($page: Int!) {
@@ -17,6 +18,7 @@ const FETCH_CHARS = gql`
 `;
 
 // varētu auto ģenerēt interfeisus pēc fetch shēmas
+// nez kāpēc updateQuery neiet ar importētiem interfeisiem
 interface CharacterData {
   characters: Characters
 }
@@ -33,11 +35,31 @@ interface CharactersVars {
 }
 
 export const Main: React.FC = () => {
-  const { loading, data } = useQuery<CharacterData, CharactersVars>(FETCH_CHARS, { variables: { page: 1 } })
+  // const [page, setPage] = useState<number>(1)
+  const { loading, data, fetchMore } = useQuery<CharacterData, CharactersVars>(FETCH_CHARS, { variables: { page: 1 } })
   const characters = loading || !data ? [] : data.characters.results;
   if (loading || !data) {
     return <div className="loader">Loading...</div>;
   }
+
+  const scrollEnd = () => fetchMore({
+    variables: {
+      page: characters.length / 20 + 1
+    },
+    updateQuery: (prev, { fetchMoreResult }) => {
+      if (!fetchMoreResult) return prev;
+      // setPage(page + 1)
+      return {
+        characters: {
+          __typename: 'Characters',
+          results: [
+            ...prev.characters.results,
+            ...fetchMoreResult.characters.results
+          ]
+        }
+      }
+    }
+  })
 
   return (
     <div className="char-cards-container">
@@ -56,6 +78,10 @@ export const Main: React.FC = () => {
               </Card.Title>
             </Card.Body>
           </Card>
+          {index === characters.length - 3 && (
+            <Waypoint onEnter={() => { scrollEnd() }}>
+            </Waypoint>
+          )}
         </Link>
       ))}
     </div>

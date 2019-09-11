@@ -3,6 +3,9 @@ import { RouteComponentProps, Link } from "react-router-dom";
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import { Card } from 'react-bootstrap';
+import { EpisodeCard } from './EpisodeCard'
+import { MatchParams, EpResponse, EpisodeVars } from './interfaces'
+
 
 const FETCH_EP_CHARS = gql`
 query fetchEpisode($id: ID) {
@@ -20,31 +23,31 @@ query fetchEpisode($id: ID) {
 }
 `;
 
-interface MatchParams {
-  id: string;
-}
-interface Response {
-  episode: Episode;
-}
-interface Episode {
-  id: number,
-  name: string,
-  air_date: string,
-  // TO DO: varētu no otra api pielikt bildi un description
-  episode: string,
-  characters: Character[],
-}
-interface Character {
-  id: number,
-  name: string,
-  image: string
-}
-interface EpisodeVars {
-  id: number
-}
+// interface MatchParams {
+//   id: string;
+// }
+// interface Response {
+//   episode: Episode;
+// }
+// export interface Episode {
+//   id: number,
+//   name: string,
+//   air_date: string,
+//   // TO DO: varētu no otra api pielikt bildi un description
+//   episode: string,
+//   characters: Character[],
+// }
+// interface Character {
+//   id: number,
+//   name: string,
+//   image: string
+// }
+// interface EpisodeVars {
+//   id: number
+// }
 
 export const SingleEpisode: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
-  const { loading, data } = useQuery<Response, EpisodeVars>(FETCH_EP_CHARS, { variables: { id: parseInt(match.params.id) } })
+  const { loading, data } = useQuery<EpResponse, EpisodeVars>(FETCH_EP_CHARS, { variables: { id: parseInt(match.params.id) } })
   if (loading || !data || !data.episode) {
     return <div className="loader">Loading...</div>;
   }
@@ -58,22 +61,7 @@ export const SingleEpisode: React.FC<RouteComponentProps<MatchParams>> = ({ matc
         <h1 className="card-title">{episode.name}</h1>
         <p className="ep-air-date">{episode.air_date}</p>
         <div className="episode-info">
-          <div>
-            <h4>
-              Name
-              </h4>
-            <p>
-              {episode.name}
-            </p>
-          </div>
-          <div>
-            <h4>
-              Episode
-              </h4>
-            <p>
-              {episode.episode}
-            </p>
-          </div>
+          <EpisodeCard props={episode} />
         </div>
       </div>
       <h4 className="single-subtitle">All the characters that appeared on this episode:</h4>

@@ -2,6 +2,7 @@ import React from 'react'
 import { RouteComponentProps, Link } from "react-router-dom";
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
+import { MatchParams, CharResponse, CharacterVars } from './interfaces'
 
 const FETCH_SINGLE_CHAR = gql`
 query fetchCharacters($id: ID) {
@@ -27,37 +28,37 @@ query fetchCharacters($id: ID) {
 }
 `;
 
-interface MatchParams {
-  id: string;
-}
-interface Response {
-  character: Character;
-}
-interface Character {
-  id: number,
-  name: string,
-  image: string,
-  status: string,
-  species: string,
-  type: string;
-  gender: string,
-  location: Location,
-  origin: Location,
-  episode: Episode[],
-}
-interface Location {
-  name: string
-}
-interface Episode {
-  name: string
-  episode: string
-}
-interface CharacterVars {
-  id: number
-}
+// interface MatchParams {
+//   id: string;
+// }
+// interface Response {
+//   character: Character;
+// }
+// interface Character {
+//   id: number,
+//   name: string,
+//   image: string,
+//   status: string,
+//   species: string,
+//   type: string;
+//   gender: string,
+//   location: Location,
+//   origin: Location,
+//   episode: Episode[],
+// }
+// interface Location {
+//   name: string
+// }
+// interface Episode {
+//   name: string
+//   episode: string
+// }
+// interface CharacterVars {
+//   id: number
+// }
 
 export const SingleCharacter: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
-  const { loading, data } = useQuery<Response, CharacterVars>(FETCH_SINGLE_CHAR, { variables: { id: parseInt(match.params.id) } })
+  const { loading, data } = useQuery<CharResponse, CharacterVars>(FETCH_SINGLE_CHAR, { variables: { id: parseInt(match.params.id) } })
   if (loading || !data || !data.character) {
     return <div className="loader">Loading...</div>;
   }

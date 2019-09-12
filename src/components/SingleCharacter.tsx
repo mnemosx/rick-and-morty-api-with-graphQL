@@ -1,9 +1,10 @@
 import React from 'react'
 import { RouteComponentProps, Link } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
-import { MatchParams, CharResponse, SingleResponseVars, Episode } from './interfaces'
-import { FETCH_SINGLE_CHAR } from './requests';
+import { MatchParams, CharResponse, SingleResponseVars, Episode } from '../interfaces'
+import { FETCH_SINGLE_CHAR } from '../requests';
 import { EpisodeCard } from './EpisodeCard';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 export const SingleCharacter: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const { loading, data } = useQuery<CharResponse, SingleResponseVars>(FETCH_SINGLE_CHAR, { variables: { id: parseInt(match.params.id) } })
@@ -55,13 +56,13 @@ export const SingleCharacter: React.FC<RouteComponentProps<MatchParams>> = ({ ma
         <h2 className="single-char-slider-title">Episodes</h2>
         <p className="single-char-slider-subtext">{character.name} has appeared on these episodes</p>
       </div>
-      <div className="char-seen-cards-container">
+      <Scrollbars style={{ height: 340 }} className="char-seen-cards-container">
         {episode.map((item: Episode, index: number) => (
           <Link to={'/episodes/' + item.id} style={{ textDecoration: 'none' }} key={index}>
             <EpisodeCard className="seen-episode-info hvr-grow" props={item} />
           </Link>
         ))}
-      </div>
+      </Scrollbars>
     </div>
   )
 }

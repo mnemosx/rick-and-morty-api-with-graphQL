@@ -3,8 +3,8 @@ import { RouteComponentProps, Link } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 import { Card } from 'react-bootstrap';
 import { EpisodeCard } from './EpisodeCard'
-import { MatchParams, EpResponse, SingleResponseVars } from './interfaces'
-import { FETCH_EP_CHARS } from './requests';
+import { MatchParams, EpResponse, SingleResponseVars } from '../interfaces'
+import { FETCH_EP_CHARS } from '../requests';
 
 export const SingleEpisode: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const { loading, data } = useQuery<EpResponse, SingleResponseVars>(FETCH_EP_CHARS, { variables: { id: parseInt(match.params.id) } })

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
-import { LocationData, Location, AllResponseVars } from './interfaces'
+import { LocationData, Location, AllResponseVars } from '../interfaces'
 import { Waypoint } from 'react-waypoint';
-import { FETCH_LOCATIONS } from './requests';
+import { FETCH_LOCATIONS } from '../requests';
 
 export const AllLocations: React.FC = () => {
   const { loading, data, fetchMore } = useQuery<LocationData, AllResponseVars>(FETCH_LOCATIONS, { variables: { page: 1 } })

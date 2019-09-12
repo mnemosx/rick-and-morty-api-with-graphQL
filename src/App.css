@@ -1,3 +1,39 @@
+* {
+  background-color: rgba(255, 0, 0, .2);
+}
+
+* * {
+  background-color: rgba(0, 255, 0, .2);
+}
+
+* * * {
+  background-color: rgba(0, 0, 255, .2);
+}
+
+* * * * {
+  background-color: rgba(255, 0, 255, .2);
+}
+
+* * * * * {
+  background-color: rgba(0, 255, 255, .2);
+}
+
+* * * * * * {
+  background-color: rgba(255, 255, 0, .2);
+}
+
+* * * * * * * {
+  background-color: rgba(255, 0, 0, .2);
+}
+
+* * * * * * * * {
+  background-color: rgba(0, 255, 0, .2);
+}
+
+* * * * * * * * * {
+  background-color: rgba(0, 0, 255, .2);
+}
+
 /* ==========================================================================
    Global
    ========================================================================== */
@@ -354,7 +390,7 @@ footer>div {
   border-radius: 5px;
   width: 200px;
   height: 200px;
-  margin: 20px auto !important;
+  margin: 20px 0 !important;
   -webkit-box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
   -moz-box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
   box-shadow: -1px 14px 29px -13px rgba(10, 10, 10, 0.8);
@@ -400,9 +436,12 @@ footer>div {
   justify-content: flex-start;
   margin: -30px auto 30px auto;
   padding: 30px 0;
-  overflow: auto;
   max-width: 1160px;
-  width: 70vw;
+}
+
+.char-seen-cards-container>div:first-child {
+  display: flex;
+  padding-top: 30px;
 }
 
 .seen-episode-info {
@@ -474,30 +513,29 @@ footer>div {
   padding: 20px;
 }
 
-.location-info>div:first-of-type {
-  width: 35%;
-}
-
 .episode-info>div {
   width: 100%;
 }
 
 .episode-info>div:first-of-type {
-  width: 70%;
+  flex: 0 1 70%;
 }
 
 .episode-info>div:last-of-type {
-  width: 30%;
+  flex: 0 1 30%;
+}
+
+.location-info>div:first-of-type {
+  flex: 0 1 35%;
 }
 
 .location-info>div:nth-of-type(2) {
-  width: 55%;
+  flex: 0 1 55%;
 }
 
 .location-info>div:last-of-type {
-  border-radius: 0 4px 4px 0;
   text-align: right;
-  width: 10%;
+  flex: 0 1 10%;
 }
 
 .location-info h4, .episode-info h4 {

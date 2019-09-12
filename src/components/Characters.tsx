@@ -3,8 +3,8 @@ import { Card } from 'react-bootstrap'
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
 import { Waypoint } from 'react-waypoint';
-import { AllResponseVars, CharacterData, Character, Characters } from './interfaces'
-import { FETCH_CHARS } from './requests';
+import { AllResponseVars, CharacterData, Character, Characters } from '../interfaces'
+import { FETCH_CHARS } from '../requests';
 
 export const Main: React.FC = () => {
   // const [page, setPage] = useState<number>(1)

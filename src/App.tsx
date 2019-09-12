@@ -1,16 +1,16 @@
 import React from 'react';
-import { Header } from './Header'
-import { SingleCharacter } from './SingleCharacter'
-import { AllLocations } from './AllLocations'
-import { Main as Characters } from './Characters'
-import { Footer } from './Footer'
+import { SingleCharacter } from './components/SingleCharacter'
+import { AllLocations } from './components/AllLocations'
+import { Main as Characters } from './components/Characters'
+import { Footer } from './components/Footer'
 import 'bootstrap/dist/css/bootstrap.css'
 import { ApolloProvider } from '@apollo/react-hooks';
 import { client } from './apollo'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
-import { AllEpisodes } from './AllEpisodes';
-import { SingleEpisode } from './SingleEpisode';
+import { AllEpisodes } from './components/AllEpisodes';
+import { SingleEpisode } from './components/SingleEpisode';
+import { Header } from './components/Header';
 
 const App: React.FC = () => {
 

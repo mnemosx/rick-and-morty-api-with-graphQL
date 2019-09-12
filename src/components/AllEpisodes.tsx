@@ -2,9 +2,9 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
 import { EpisodeCard } from './EpisodeCard';
-import { EpisodeData, Episode, AllResponseVars } from './interfaces'
+import { EpisodeData, Episode, AllResponseVars } from '../interfaces'
 import { Waypoint } from 'react-waypoint';
-import { FETCH_EPISODES } from './requests';
+import { FETCH_EPISODES } from '../requests';
 
 export const AllEpisodes: React.FC = () => {
   const { loading, data, fetchMore } = useQuery<EpisodeData, AllResponseVars>(FETCH_EPISODES, { variables: { page: 1 } })

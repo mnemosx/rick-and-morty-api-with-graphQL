@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from './assets/img/main-logo.svg'
+import logo from '../assets/img/main-logo.svg'
 import { Link } from 'react-router-dom'
 import { Nav } from 'react-bootstrap'
 

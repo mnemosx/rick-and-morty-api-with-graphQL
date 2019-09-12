@@ -1,5 +1,5 @@
 import React from 'react'
-import { Episode } from './interfaces'
+import { Episode } from '../interfaces'
 
 type CardProps = {
   className?: string,

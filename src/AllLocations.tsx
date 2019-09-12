@@ -1,48 +1,38 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from "apollo-boost";
-import { LocationData, LocationVars } from './interfaces'
-
-
-const FETCH_LOCATIONS = gql`
-  query fetchLocations($page: Int!) {
-      locations(page: $page) {
-        results {
-          id
-          name
-          type
-          dimension
-        }
-      }
-  }
-`;
-
-// interface LocationData {
-//   locations: Locations
-// }
-// interface Locations {
-//   results: Location[]
-// }
-// interface Location {
-//   name: string,
-//   type: string,
-//   dimension: string,
-// }
-// interface LocationVars {
-//   page: number
-// }
+import { LocationData, Location, AllResponseVars } from './interfaces'
+import { Waypoint } from 'react-waypoint';
+import { FETCH_LOCATIONS } from './requests';
 
 export const AllLocations: React.FC = () => {
-  const { loading, data } = useQuery<LocationData, LocationVars>(FETCH_LOCATIONS, { variables: { page: 1 } })
+  const { loading, data, fetchMore } = useQuery<LocationData, AllResponseVars>(FETCH_LOCATIONS, { variables: { page: 1 } })
   const locations = loading || !data ? [] : data.locations.results;
   if (loading || !data) {
     return <div className="loader">Loading...</div>;
   }
 
+  const scrollEnd = () => fetchMore({
+    variables: {
+      page: locations.length / 20 + 1
+    },
+    updateQuery: (prev, { fetchMoreResult }) => {
+      if (!fetchMoreResult) return prev;
+      return {
+        locations: {
+          __typename: 'Locations',
+          results: [
+            ...prev.locations.results,
+            ...fetchMoreResult.locations.results
+          ]
+        }
+      }
+    }
+  })
+
   return (
     <div className="content-container">
-      {locations.map((item: any, index: any) => (
-        <div className="location-card">
+      {locations.map((item: Location, index: number) => (
+        <div className="location-card" key={index}>
           <h1 className="card-title">{item.name}</h1>
           <div className="location-info hvr-grow">
             <div>
@@ -70,6 +60,12 @@ export const AllLocations: React.FC = () => {
               </p>
             </div>
           </div>
+
+          {index === locations.length - 3 && (
+            <Waypoint onEnter={() => { scrollEnd() }}>
+            </Waypoint>
+          )}
+
         </div>
       ))}
     </div>

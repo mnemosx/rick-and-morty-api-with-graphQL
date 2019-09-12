@@ -3,7 +3,7 @@
 Global:
 
 - [ ] Responsive
-- [ ] Infinite scroll where possible
+- [x] Infinite scroll where possible
 - [x] Cards have hover effects
 - [ ] Cards are clickable and redirects to the appropriate page
 
@@ -19,12 +19,12 @@ Character page:
 
 - [x] shows all the information available about the character
 - [x] shows cards with episodes where character was seen
-- [ ] shows cards with planets where character has been
+- [ ] [DISCARD] shows cards with planets where character has been
 
 Planet page:
 
-- [ ] shows all the information about the planet
-- [ ] shows all the characters seen on this planet
+- [x] shows all the information about the planet
+- [ ] shows all the residents of this planet
 
 Episode page:
 

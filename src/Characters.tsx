@@ -1,42 +1,14 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from "apollo-boost";
 import { Link } from 'react-router-dom';
 import { Waypoint } from 'react-waypoint';
-
-const FETCH_CHARS = gql`
-  query fetchCharacters($page: Int!) {
-    characters(page: $page) {
-      results {
-        id
-        name
-        image
-      }
-    }
-  }
-`;
-
-// varētu auto ģenerēt interfeisus pēc fetch shēmas
-// nez kāpēc updateQuery neiet ar importētiem interfeisiem
-interface CharacterData {
-  characters: Characters
-}
-interface Characters {
-  results: Character[]
-}
-interface Character {
-  id: number,
-  name: string,
-  image: string,
-}
-interface CharactersVars {
-  page: number
-}
+import { AllResponseVars, CharacterData, Character, Characters } from './interfaces'
+import { FETCH_CHARS } from './requests';
 
 export const Main: React.FC = () => {
   // const [page, setPage] = useState<number>(1)
-  const { loading, data, fetchMore } = useQuery<CharacterData, CharactersVars>(FETCH_CHARS, { variables: { page: 1 } })
+  const { loading, data, fetchMore } = useQuery<CharacterData, AllResponseVars>(FETCH_CHARS, { variables: { page: 1 } })
   const characters = loading || !data ? [] : data.characters.results;
   if (loading || !data) {
     return <div className="loader">Loading...</div>;
@@ -63,7 +35,7 @@ export const Main: React.FC = () => {
 
   return (
     <div className="char-cards-container">
-      {characters.map((item: any, index: any) => (
+      {characters.map((item: Character, index: number) => (
         <Link to={'/characters/' + item.id} style={{ textDecoration: 'none' }}>
           <Card key={index} className="char-card z-depth-1" >
             <Card.Img

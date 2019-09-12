@@ -1,53 +1,13 @@
 import React from 'react'
 import { RouteComponentProps, Link } from "react-router-dom";
-import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import { Card } from 'react-bootstrap';
 import { EpisodeCard } from './EpisodeCard'
-import { MatchParams, EpResponse, EpisodeVars } from './interfaces'
-
-
-const FETCH_EP_CHARS = gql`
-query fetchEpisode($id: ID) {
-  episode(id: $id) {
-    id
-    name
-    air_date
-    episode
-    characters {
-      id
-      name
-      image
-    }
-  }
-}
-`;
-
-// interface MatchParams {
-//   id: string;
-// }
-// interface Response {
-//   episode: Episode;
-// }
-// export interface Episode {
-//   id: number,
-//   name: string,
-//   air_date: string,
-//   // TO DO: varētu no otra api pielikt bildi un description
-//   episode: string,
-//   characters: Character[],
-// }
-// interface Character {
-//   id: number,
-//   name: string,
-//   image: string
-// }
-// interface EpisodeVars {
-//   id: number
-// }
+import { MatchParams, EpResponse, SingleResponseVars } from './interfaces'
+import { FETCH_EP_CHARS } from './requests';
 
 export const SingleEpisode: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
-  const { loading, data } = useQuery<EpResponse, EpisodeVars>(FETCH_EP_CHARS, { variables: { id: parseInt(match.params.id) } })
+  const { loading, data } = useQuery<EpResponse, SingleResponseVars>(FETCH_EP_CHARS, { variables: { id: parseInt(match.params.id) } })
   if (loading || !data || !data.episode) {
     return <div className="loader">Loading...</div>;
   }

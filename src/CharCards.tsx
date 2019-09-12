@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import React from 'react'
 
-
-
 export function CharCards(characters: []) {
 
   return (

@@ -1,10 +1,20 @@
-
-// AllEpisodes
 export interface EpisodeData {
   episodes: Episodes
 }
+export interface LocationData {
+  locations: Locations
+}
+export interface CharacterData {
+  characters: Characters
+}
 interface Episodes {
   results: Episode[]
+}
+export interface Characters {
+  results: Character[]
+}
+interface Locations {
+  results: Location[]
 }
 export interface Episode {
   id: number,
@@ -13,22 +23,6 @@ export interface Episode {
   episode: string,
   characters: Characters[],
   // TO DO: varētu no otra api pielikt bildi un description
-}
-export interface Characters {
-  name: string,
-  image: string,
-  results: Character[]
-}
-export interface AllEpisodeVars {
-  page: number
-}
-
-// SingleCharacter
-export interface MatchParams {
-  id: string;
-}
-export interface CharResponse {
-  character: Character;
 }
 export interface Character {
   id: number,
@@ -42,38 +36,24 @@ export interface Character {
   origin: Location,
   episode: Episode[],
 }
-export interface CharacterVars {
-  id: number
-}
-
-// SingleEpisode
-export interface EpResponse {
-  episode: Episode;
-}
-export interface EpisodeVars {
-  id: number
-}
-
-// AllLocations
-export interface LocationData {
-  locations: Locations
-}
-interface Locations {
-  results: Location[]
-}
-interface Location {
+export interface Location {
+  id: number,
   name: string,
   type: string,
   dimension: string,
 }
-export interface LocationVars {
+export interface MatchParams {
+  id: string;
+}
+export interface SingleResponseVars {
+  id: number
+}
+export interface AllResponseVars {
   page: number
 }
-
-// Characters
-export interface CharacterData {
-  characters: Characters
+export interface EpResponse {
+  episode: Episode;
 }
-export interface CharactersVars {
-  page: number
+export interface CharResponse {
+  character: Character;
 }

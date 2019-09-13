@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { Link } from 'react-router-dom';
 import { EpisodeCard } from './EpisodeCard';
 import { EpisodeData, Episode, AllResponseVars } from '../interfaces'
-import { Waypoint } from 'react-waypoint';
 import { FETCH_EPISODES } from '../requests';
+import { CallWaypoint } from './Waypoint';
 
 export const AllEpisodes: React.FC = () => {
   const { loading, data, fetchMore } = useQuery<EpisodeData, AllResponseVars>(FETCH_EPISODES, { variables: { page: 1 } })
@@ -39,12 +39,7 @@ export const AllEpisodes: React.FC = () => {
           <h1 className="card-title">{item.name}</h1>
           <Link to={'/episodes/' + item.id} style={{ textDecoration: 'none' }}>
             <EpisodeCard className="hvr-grow" props={item} />
-
-            {index === episodes.length - 3 && (
-              <Waypoint onEnter={() => { scrollEnd() }}>
-              </Waypoint>
-            )}
-
+            <CallWaypoint indexProp={index} charactersProp={episodes} fnProps={scrollEnd} />
           </Link>
         </div>
       ))}

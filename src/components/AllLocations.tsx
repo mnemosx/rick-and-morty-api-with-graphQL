@@ -1,8 +1,8 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { LocationData, Location, AllResponseVars } from '../interfaces'
-import { Waypoint } from 'react-waypoint';
 import { FETCH_LOCATIONS } from '../requests';
+import { CallWaypoint } from './Waypoint';
 
 export const AllLocations: React.FC = () => {
   const { loading, data, fetchMore } = useQuery<LocationData, AllResponseVars>(FETCH_LOCATIONS, { variables: { page: 1 } })
@@ -60,12 +60,7 @@ export const AllLocations: React.FC = () => {
               </p>
             </div>
           </div>
-
-          {index === locations.length - 3 && (
-            <Waypoint onEnter={() => { scrollEnd() }}>
-            </Waypoint>
-          )}
-
+          <CallWaypoint indexProp={index} charactersProp={locations} fnProps={scrollEnd} />
         </div>
       ))}
     </div>
